@@ -43,7 +43,7 @@ function create(id, flags) {
   fs.writeFileSync(path.join(STATE, name + ".json"), JSON.stringify({ id, name, dir, mode: flags.b ? "B" : "full", created: Date.now(), kit: KIT }));
   fs.writeFileSync(path.join(STATE, "last"), dir);
   console.log(`✓ 과제 폴더를 만들었어요: ${dir}`);
-  console.log(`  ${S.sealed ? "봉인 과제" : S.title}${flags.b ? " · 연습 B (합의문 포함 — AGENTS.md 8줄은 직접 치기)" : ""}${ok ? " · git 시작 커밋 완료" : " · (git이 없어 커밋 기록은 못 남겨요)"}`);
+  console.log(`  ${S.sealed ? "봉인 과제" : S.title}${flags.b ? " · 연습 B (합의문 포함 — AGENTS.md 9줄은 직접 치기)" : ""}${ok ? " · git 시작 커밋 완료" : " · (git이 없어 커밋 기록은 못 남겨요)"}`);
   console.log("\n다음 순서");
   console.log(`  1) cd ${dir} && codex`);
   console.log('     (경로 복사가 귀찮으면:  cd "$(node ~/probe-kit.js where)" && codex )');
