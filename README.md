@@ -1,5 +1,23 @@
 # probe-kit
 
+## 작업 하네스 (AGENTS.md · MSG.md)
+
+Codex CLI로 업무 담당자와 협업하며 과제를 풀 때 쓰는 개인 작업 규칙과 문장 템플릿입니다. 과제의 답이나 코드는 들어 있지 않습니다.
+
+- `AGENTS.md` — 한 단어 명령(정찰 · 초안 · 반영 · 계획 · 다음 · 마무리)의 정의와 보고 형식
+- `MSG.md` — 업무 담당자에게 보내는 메시지와 Codex에 치는 문장 모음
+
+과제 폴더의 터미널에서:
+
+```
+git clone https://github.com/Taewoo-Won/probe-kit ~/harness
+cat ~/harness/AGENTS.md > AGENTS.md      # 과제 폴더에 AGENTS.md가 없을 때
+cat ~/harness/AGENTS.md >> AGENTS.md     # 이미 있을 때(맨 아래에 덧붙이고, 원래 규칙과 부딪히는 줄은 지운다)
+cat ~/harness/MSG.md > MSG.md            # 문장 모음을 편집기에서 보려고
+```
+
+## 모의고사 연습 키트 (probe-kit.js)
+
 AI 협업 코딩 모의고사를 **실제 Codex CLI**로 연습할 때 쓰는 키트. 가상 과제(README)와 가상 데이터, 일부 과제의 가상 '전임자 코드', 제출용 pack 스크립트만 들어 있어요. 실제 회사·시험 문제와는 관계없어요.
 
 ## 받기
