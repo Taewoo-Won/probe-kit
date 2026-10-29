@@ -7,14 +7,16 @@ Codex CLI로 업무 담당자와 협업하며 과제를 풀 때 쓰는 개인 �
 - `AGENTS.md` — 한 단어 명령(정찰 · 초안 · 반영 · 계획 · 다음 · 마무리)의 정의와 보고 형식
 - `MSG.md` — 업무 담당자에게 보내는 메시지와 Codex에 치는 문장 모음
 
-과제 폴더의 터미널에서:
+과제 폴더의 터미널에서 (작업 폴더 밖인 /tmp/harness에 받는다):
 
 ```
-git clone https://github.com/Taewoo-Won/probe-kit ~/harness
-cat ~/harness/AGENTS.md > AGENTS.md      # 과제 폴더에 AGENTS.md가 없을 때
-cat ~/harness/AGENTS.md >> AGENTS.md     # 이미 있을 때(맨 아래에 덧붙이고, 원래 규칙과 부딪히는 줄은 지운다)
-cat ~/harness/MSG.md > MSG.md            # 문장 모음을 편집기에서 보려고
+git clone https://github.com/Taewoo-Won/probe-kit /tmp/harness
+cat /tmp/harness/AGENTS.md >> AGENTS.md
+cat /tmp/harness/MSG.md > MSG.md
 ```
+
+- 둘째 줄은 `>>`(맨 아래에 덧붙이기)라서 과제 폴더에 AGENTS.md가 이미 있어도 지워지지 않는다. 원래 있었으면 원래 규칙과 부딪히는 줄을 지운다(과제 작성자 규칙이 우선). 한 번만 친다.
+- MSG.md는 편집기에서 열어 문장을 복사하는 메모다. AGENTS.md가 Codex에게 읽지도 커밋하지도 말라고 정해 둔다.
 
 ## 모의고사 연습 키트 (probe-kit.js)
 

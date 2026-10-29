@@ -43,12 +43,16 @@ function create(id, flags) {
   fs.writeFileSync(path.join(STATE, name + ".json"), JSON.stringify({ id, name, dir, mode: flags.b ? "B" : "full", created: Date.now(), kit: KIT }));
   fs.writeFileSync(path.join(STATE, "last"), dir);
   console.log(`✓ 과제 폴더를 만들었어요: ${dir}`);
-  console.log(`  ${S.sealed ? "봉인 과제" : S.title}${flags.b ? " · 연습 B (합의문 포함 — AGENTS.md 9줄은 직접 치기)" : ""}${ok ? " · git 시작 커밋 완료" : " · (git이 없어 커밋 기록은 못 남겨요)"}`);
+  console.log(`  ${S.sealed ? "봉인 과제" : S.title}${flags.b ? " · 연습 B (합의문 포함)" : ""}${ok ? " · git 시작 커밋 완료" : " · (git이 없어 커밋 기록은 못 남겨요)"}`);
   console.log("\n다음 순서");
-  console.log(`  1) cd ${dir} && codex`);
-  console.log('     (경로 복사가 귀찮으면:  cd "$(node ~/probe-kit.js where)" && codex )');
-  console.log("  2) codex가 켜지면 먼저 /model — 시험에선 Astra가 제한, 권장 Sol 6.1");
-  console.log("  3) 끝나면 이 폴더에서:  node ~/probe-kit.js pack");
+  console.log(`  1) cd ${dir}`);
+  console.log('     (경로 복사가 귀찮으면:  cd "$(node ~/probe-kit.js where)" )');
+  console.log("  2) 시험처럼 하네스부터 (codex 켜기 전에. /tmp/harness가 이미 있으면 첫 줄은 건너뛰기):");
+  console.log("     git clone https://github.com/Taewoo-Won/probe-kit /tmp/harness");
+  console.log("     cat /tmp/harness/AGENTS.md >> AGENTS.md");
+  console.log("     cat /tmp/harness/MSG.md > MSG.md");
+  console.log("  3) codex → 업데이트 팝업은 Esc → /model (권장 Sol 6.1 · Terra 5.6 · Luna 6.0, Astra 금지)");
+  console.log("  4) 끝나면 이 폴더에서:  node ~/probe-kit.js pack   (MSG.md는 내 메모라 제출에서 빠져요)");
   console.log("\n모의고사 화면에서는 같은 과제를 '실제 Codex'로 시작해 두고, 업무 담당자 인터뷰·제출·서술형은 거기서 하세요.");
 }
 
@@ -157,6 +161,7 @@ function pack(arg, flags) {
   const S = st.id ? scen()[st.id] : null;
   const files = {}, skipped = []; let budget = 400000;
   for (const x of walk(dir, "", []).sort((a, b) => a.size - b.size)) {
+    if (x.rel === "MSG.md") continue;  // 하네스 문장 모음 = 내 메모 (제출물이 아님)
     if (S && S.files[x.rel] != null) { const c = fs.readFileSync(x.f, "utf8"); if (c === S.files[x.rel]) continue; }
     if (x.size > 300000 || x.size > budget) { skipped.push(x.rel + ` (${Math.round(x.size / 1024)}KB)`); continue; }
     const buf = fs.readFileSync(x.f); if (buf.includes(0)) { skipped.push(x.rel + " (바이너리)"); continue; }
