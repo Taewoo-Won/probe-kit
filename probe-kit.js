@@ -47,7 +47,7 @@ function create(id, flags) {
   console.log("\n다음 순서");
   console.log(`  1) cd ${dir}`);
   console.log('     (경로 복사가 귀찮으면:  cd "$(node ~/probe-kit.js where)" )');
-  console.log("  2) 시험처럼 하네스부터 (codex 켜기 전에. /tmp/harness가 이미 있으면 첫 줄은 건너뛰기):");
+  console.log("  2) 시험처럼 하네스부터 (codex 켜기 전에. /tmp/harness가 이미 있으면 첫 줄 대신 git -C /tmp/harness pull):");
   console.log("     git clone https://github.com/Taewoo-Won/probe-kit /tmp/harness");
   console.log("     cat /tmp/harness/AGENTS.md >> AGENTS.md");
   console.log("     cat /tmp/harness/MSG.md > MSG.md");
