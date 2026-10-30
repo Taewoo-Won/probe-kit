@@ -1,7 +1,7 @@
 # MSG.md — 내 메모 (Codex는 안 읽고 커밋도 안 한다. ○ 자리는 바꿔서 복사)
 
 ## 흐름 — 화면 오른쪽 위 '남은 시간'
-- 시작: README 끝까지 → terminal 1에 시작 한 줄(git clone … /tmp/harness && sh /tmp/harness/go) → 같은 탭에 codex
+- 시작: README 끝까지 → terminal 1에 시작 한 줄(git clone … /tmp/harness; sh /tmp/harness/go — 두 번 쳐도 된다) → 같은 탭에 codex
 - codex를 켤 때마다 화면 제목을 읽는다: 'Update available'이면 2 / 'Do you trust'면 Enter (여기서 2 · Esc는 종료) → /model Sol 6.1 medium → /status
 - 늦어도 2:45 정찰 → 바로 '담당자 1번' 보내기 → 답은 TALK.md 맨 아래 '## 1번 답'
 - 늦어도 2:35 Q.md 읽기(지우지 않음 · 맨 아래 공통 질문 확인) → '담당자 2번' → 답은 TALK.md → 빠진 번호는 다시
