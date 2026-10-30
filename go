@@ -16,6 +16,7 @@ fi
 # 작업 폴더 안에 잘못 받은 하네스 사본(./tmp/harness · ./probe-kit · ./harness)은 지운다 — Codex가 읽거나 제출물에 섞이지 않게
 for d in tmp/harness probe-kit harness; do
   if [ -f "$d/go" ] && [ -d "$d/.git" ] && grep -q "$MARK" "$d/AGENTS.md" 2>/dev/null; then
+    [ "$(cd "$d" && pwd -P)" = "$(cd "$H" && pwd -P)" ] && continue  # /tmp/harness 자신은 지우지 않는다
     rm -rf "$d" && say "작업 폴더 안에 잘못 받은 $d 를 지움"
     [ "$d" = tmp/harness ] && rmdir tmp 2>/dev/null
   fi
@@ -30,6 +31,7 @@ if [ "$1" != "f" ] && [ "$here" = no ]; then
   sub=""
   for x in */; do
     [ -d "$x" ] || continue
+    [ -f "${x}go" ] && grep -q "$MARK" "${x}AGENTS.md" 2>/dev/null && continue  # 하네스 자신은 과제 폴더가 아니다
     if ls -1A "$x" 2>/dev/null | grep -qi '^readme'; then sub="${x%/}"; break; fi
   done
   say "여기($(pwd))에 README가 없어 아무것도 안 했다."
