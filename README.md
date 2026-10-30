@@ -25,7 +25,7 @@ AI 협업 코딩 모의고사를 **실제 Codex CLI**로 연습할 때 쓰는 �
 ## 받기
 
 ```
-curl -fsSL https://raw.githubusercontent.com/Taewoo-Won/probe-kit/main/probe-kit.js -o ~/probe-kit.js
+curl -fsSL https://raw.githubusercontent.com/Taewoo-Won/probe-kit/kit/probe-kit.js -o ~/probe-kit.js
 ```
 
 ## 쓰기
