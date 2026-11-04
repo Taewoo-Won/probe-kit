@@ -55,6 +55,10 @@ else
   say "AGENTS.md: 새로 만듦"
 fi
 
+# Codex는 AGENTS.md를 앞에서 32KiB까지만 읽는다 — 과제 AGENTS.md가 커서 하네스 규칙이 잘릴 수 있으면 알린다
+n=$(wc -c < AGENTS.md)
+[ "$n" -gt 30000 ] && say "주의: AGENTS.md가 ${n}바이트라 Codex가 뒷부분(하네스 규칙)을 못 읽을 수 있다 → codex 대신 이 한 줄로 켠다: codex -c project_doc_max_bytes=65536"
+
 # 2) MSG.md — 내 메모. 이미 있으면 덮어쓰지 않는다
 if [ -f MSG.md ] && grep -q '^# MSG.md' MSG.md; then
   say "MSG.md: 이미 있어 그대로 둠 (새로 받으려면: cat $H/MSG.md > MSG.md)"
