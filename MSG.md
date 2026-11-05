@@ -57,7 +57,7 @@
 ## 손 · 막힐 때
 - 시험 중: 말하지 않는다(혼잣말도) · 이어폰 · 헤드폰 · 워치 없음 · 종이(A4)는 안 본다 — 보는 건 편집기의 MSG.md · 다른 탭 · 창 · 프로그램으로 가지 않는다
 - 전체화면이 풀렸다(Esc 등) → 화면 안내대로 다시 전체화면. 경고는 바로 감점이 아니다
-- Codex 입력칸 · 터미널 붙여넣기는 Ctrl+Shift+V. Codex 탭이 쉴 때 Ctrl+C · Ctrl+D 금지(꺼짐 → codex resume --last). terminal 3에서 서버를 끌 때는 Ctrl+C
+- Codex 입력칸 · 터미널 붙여넣기는 Ctrl+Shift+V. Codex 탭이 쉴 때 Ctrl+C · Ctrl+D 금지(꺼져서 $로 돌아옴 → 같은 탭에 codex resume --last → 위 '시작' 둘째 줄대로 제목 읽기 · /model · /status → 마지막 보고의 '다음 할 일' 한 단어, 기억 안 나면 '이어서' 줄. resume이 오류면 codex로 켜고 같은 순서). terminal 3에서 서버를 끌 때는 Ctrl+C
 - Esc는 한 번만. 두 번 눌러 기록 화면이 뜨면 영문 상태로 q (Enter 금지)
 - 편집기에서 Ctrl+A 다음엔 Ctrl+C만. Ctrl+V를 눌러 덮어썼으면 그 탭에서 Ctrl+Z
 - 꼬였다 → Esc → /new → '이어서' · 빨간 오류 2번 → 문제 신고(시각 · 문구) → /model Terra 5.6
