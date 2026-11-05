@@ -3,7 +3,7 @@
 ## 흐름 — 화면 오른쪽 위 '남은 시간'
 ### 시작
 - README 끝까지 → terminal 1에 시작 한 줄(git clone … /tmp/harness; sh /tmp/harness/go — 두 번 쳐도 된다) → 같은 탭에 codex
-- codex를 켤 때마다 화면 제목을 읽는다: 'Update available'이면 2 / 'Do you trust'면 Enter (여기서 2 · Esc는 종료) → /model Sol 6.1 medium → /status
+- codex를 켤 때마다(codex resume 포함) 화면 제목을 읽는다: 'Update available'이면 2 (Enter · 1 금지 — 업데이트가 시작된다. 시험 안내: 업데이트 시 불이익) / 'Do you trust'면 Enter (여기서 2 · Esc는 종료) → /model Sol 6.1 medium → /status
 ### 합의 — 2:25까지 초안
 - 2:45 정찰 → 바로 '담당자 1번' 보내기 → 답은 TALK.md 맨 아래 '## 1번 답' (TALK.md가 없으면 편집기 탐색기에서 새 파일 TALK.md)
 - 2:35 Q.md 읽기(지우지 않음 · 맨 아래 공통 질문 확인) → '담당자 2번' → 답은 TALK.md → 빠진 번호는 다시
@@ -59,6 +59,7 @@
 - 편집기에서 Ctrl+A 다음엔 Ctrl+C만. Ctrl+V를 눌러 덮어썼으면 그 탭에서 Ctrl+Z
 - 꼬였다 → Esc → /new → '이어서' · 빨간 오류 2번 → 문제 신고(시각 · 문구) → /model Terra 5.6
 - '외부 변경 감지' → Codex가 쓴 파일이면 '외부 변경 불러오기' · 파일 목록이 늦으면 탐색기 새로고침
+- 실수로 업데이트가 시작됐다(Update 화면에서 Enter · 1) → 바로 Ctrl+C → 문제 신고(시각 · 증상) → codex 다시 켜서 2
 - MSG.md가 망가졌다 → 셸에 cat /tmp/harness/MSG.md > MSG.md (한 줄씩 친다. 두 줄을 한 번에 붙이면 섞인다)
 - 터미널 끊김 → 다시 연결 또는 + 새 탭 · 응시 탭이 닫힘 → 같은 개인 링크로 재입장 → 카메라 · 화면 공유 · 폰 연결 QR 다시 · '비활성' → 계속 작업
 

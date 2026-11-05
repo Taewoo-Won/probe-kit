@@ -8,7 +8,7 @@
 - 기준은 AGREEMENT.md와 TALK.md(업무 담당자 답)다. 파일 이름·형식·제출물은 README가 우선이다.
 - 과제가 준 문서(README · 답안 파일 · 안내문)는 문구를 고치지 않고 칸도 덧붙이지 않는다. 쓰는 곳은 과제가 쓰라고 한 자리(답안 파일의 답 자리, README가 쓰라고 한 칸)뿐이다. 과제가 준 데이터 파일도 고치지 않는다(함정은 코드에서 처리한다). 내 기록은 WORKLOG.md에만 쓴다.
 - 나에게 묻지 않는다. 보고와 답을 질문('~할까요?' · '~해 드릴까요?')으로 끝내지 않는다. 정할 게 있으면 안을 정해 AGREEMENT.md 가정 칸에 적는다(담당자가 나중에 확인한다). TALK.md에 담당자 답이 있으면 그대로 따른다.
-- 하지 않는 것: 파일 삭제(이름을 바꿔야 하면 git mv), 새 패키지 설치, 인터넷 접속(바깥 curl · git clone 등. localhost는 된다), sudo, push · remote 추가 · reset · checkout · clean, 범위 밖 작업(AGREEMENT.md '만들 것'에 없는 새 기능). 필요해 보여도 그것 없이(표준 라이브러리로) 하고, WORKLOG.md 단계 기록에 '안 한 것: ○○ — 이유'를 쓴다. 확인용 계산은 node -e · python3 -c · 파이프로 하고 임시 파일을 만들지 않는다(지울 수 없어서다).
+- 하지 않는 것: 파일 삭제(이름을 바꿔야 하면 git mv), 새 패키지 설치, Codex 업데이트(npm install -g @openai/codex 등 — 시험이 버전을 고정했다), 인터넷 접속(바깥 curl · git clone 등. localhost는 된다), sudo, push · remote 추가 · reset · checkout · clean, 범위 밖 작업(AGREEMENT.md '만들 것'에 없는 새 기능). 필요해 보여도 그것 없이(표준 라이브러리로) 하고, WORKLOG.md 단계 기록에 '안 한 것: ○○ — 이유'를 쓴다. 확인용 계산은 node -e · python3 -c · 파이프로 하고 임시 파일을 만들지 않는다(지울 수 없어서다).
 - 설치는 프로젝트에 이미 적힌 의존성만 한다: 패키지 이름 없이 npm install, 또는 pip install -r requirements.txt.
 - 기존 테스트는 지금 규칙(AGREEMENT.md · TALK.md)이나 내 '틀림' · '안 됨'과 어긋날 때만 고친다. 고치면 WORKLOG.md 단계 기록에 '테스트 변경: 무엇 · 근거'를 쓰고, 근거가 담당자 답이 아니면 AGREEMENT.md 가정 칸에도 적는다.
 - 내가 승인 창을 거절했거나(Esc) '왜 필요해?'라고 하면: 그 명령이 왜 필요했는지 한 줄 → 같은 명령은 다시 시도하지 않고 그것 없이 하던 일을 마저 한다 → WORKLOG.md에 사건으로 남긴다.

@@ -70,5 +70,5 @@ else
 fi
 
 # 3) 다음 할 일
-say "다음: 같은 탭에 codex → 'Update available'이면 2 · 'Do you trust'면 Enter → /model Sol 6.1 medium → /status → 정찰"
+say "다음: 같은 탭에 codex → 'Update available'이면 2 (Enter · 1 금지 = 업데이트) · 'Do you trust'면 Enter → /model Sol 6.1 medium → /status → 정찰"
 say "흐름 · 문장은 편집기에서 MSG.md (맨 위 '흐름')"
