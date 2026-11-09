@@ -1,7 +1,34 @@
 #!/bin/bash
-# probe-kit 결선 모드 실제 Codex 시험: 정찰 → (다음 할 일 따라) 4번까지
+# probe-kit 결선 모드 실제 Codex 시험 v2: 새로(new) 또는 이어서(resume), 다음 할 일을 따라 4번
+export LC_ALL=C.UTF-8 LANG=C.UTF-8
 T=/root/pk_selftest
 CODEX=$(command -v codex || echo /root/.local/bin/codex)
+MODE=${1:-new}
+pick() { python3 - "$1" <<'EOF'
+import re,sys
+t=open(sys.argv[1],encoding='utf-8',errors='ignore').read()
+m=re.findall(r'다음 할 일\W*([가-힣]+)',t)
+print(m[-1] if m else '')
+EOF
+}
+rawline() { python3 - "$1" <<'EOF'
+import sys
+L=[l.strip() for l in open(sys.argv[1],encoding='utf-8',errors='ignore') if '다음 할 일' in l]
+print(L[-1][:70] if L else '없음')
+EOF
+}
+infer() {
+  [ -f WORKLOG.md ] || { echo 정찰; return; }
+  [ -f AGREEMENT.md ] || { grep -q '열린 문제' WORKLOG.md && echo 재정의 || echo 초안; return; }
+  [ -f PLAN.md ] || { echo 계획; return; }
+  echo 다음
+}
+DIAG=""
+if [ "$MODE" = resume ] && [ -d "$T/task" ]; then
+  cd "$T/task"
+  [ -f "$T/log.txt" ] && DIAG="지난 로그의 다음 할 일 줄: $(rawline "$T/log.txt")"
+  next=$(infer)
+else
 rm -rf "$T"; mkdir -p "$T/task/data"; cd "$T" || exit 1
 git clone -q https://github.com/Taewoo-Won/probe-kit h || { echo "clone 실패" > "$T/summary.txt"; exit 1; }
 cd task
@@ -43,22 +70,28 @@ for name,head,rows in [('lot_history',['lot_id','step','tool','chamber','time_in
 EOF
 cp ../h/AGENTS.md AGENTS.md
 git init -q && git add -A && git -c user.name=tester -c user.email=t@t commit -qm "과제 원본"
-LOG="$T/log.txt"; : > "$LOG"; next="정찰"; steps=""
+  next="정찰"
+fi
+cd "$T/task"
+steps=""
 for i in 1 2 3 4; do
-  echo "=== [$i] $next ===" >> "$LOG"
-  timeout 1500 "$CODEX" exec --skip-git-repo-check --sandbox workspace-write "$next" < /dev/null >> "$LOG" 2>&1
-  nx=$(grep -o '다음 할 일: *[가-힣]*' "$LOG" | tail -1 | sed 's/다음 할 일: *//')
-  steps="$steps $next→${nx:-?}"
-  [ -z "$nx" ] && break
+  out="$T/step_$i.txt"
+  timeout 1500 "$CODEX" exec --skip-git-repo-check --sandbox workspace-write "$next" < /dev/null > "$out" 2>&1
+  rc=$?
+  { echo "=== [$i] $next (rc=$rc) ==="; cat "$out"; } >> "$T/log.txt"
+  nx=$(pick "$out"); how=""
+  if [ -z "$nx" ]; then nx=$(infer); how="(파일로)"; fi
+  steps="$steps $next[rc$rc]→$nx$how"
   next="$nx"
 done
 {
 echo "흐름:$steps"
-grep -m2 -E '과제 모양|담당자:' WORKLOG.md 2>/dev/null | cut -c1-110
+[ -n "$DIAG" ] && echo "$DIAG"
+echo "마지막 보고 끝줄: $(rawline "$T/step_4.txt" 2>/dev/null)"
+grep -m2 -E '과제 모양|담당자:' WORKLOG.md 2>/dev/null | cut -c1-90
 echo "합의문 세 칸: $(grep -c -E '지금 방식|질문 셋|고른 질문' AGREEMENT.md 2>/dev/null)"
-grep -m1 -A1 -E '고른 질문' AGREEMENT.md 2>/dev/null | cut -c1-140
-grep -E '^\s*[0-9]+[.)]' PLAN.md 2>/dev/null | head -7 | cut -c1-80
-echo "커밋: $(git log --oneline | wc -l)개"
-echo "Usage 오류: $(grep -c 'Usage:' "$LOG")"
+grep -m1 -A1 -E '고른 질문' AGREEMENT.md 2>/dev/null | cut -c1-120
+grep -E '^(#+ *)?[0-9]+ ?(단계|[.)])' PLAN.md 2>/dev/null | head -7 | cut -c1-70
+echo "커밋: $(git log --oneline | wc -l)개 / Usage 오류: $(grep -c 'Usage:' "$T/log.txt")"
 } > "$T/summary.txt"
 echo 끝 >> "$T/summary.txt"
